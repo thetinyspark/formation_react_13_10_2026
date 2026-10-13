@@ -2,7 +2,7 @@ import PageHeader from './components/PageHeader';
 import Catalog from './components/Catalog';
 import CatalogFilter from './components/CatalogFilter';
 import CATALOG_MOCK from './data/Catalog_mock';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 
 function getUniquePlatforms(catalog) {
@@ -24,14 +24,20 @@ export default function App() {
   // et de tous ses composants enfants.
 
   const title = "My Video Game Store";
+  const [selectedPlatform, setSelectedPlatform] = useState("All");
   const [platforms, setPlatforms] = useState(getUniquePlatforms(CATALOG_MOCK));
-  const [catalog, setCatalog] = useState(CATALOG_MOCK);
-  function setCurrentPlatform(platform){
-    if( platform === "All")
-      return setCatalog(CATALOG_MOCK);
+  const filteredGames = useMemo(
+    ()=>{
+      // condition ternaire, si la condition entre parenthèses est vraie alors on retourne CATALOG_MOCK
+      // sinon on retourne un CATALOG_MOCK filtré, toutefois, si la valeur contenue dans selectedPlatform
+      // a déjà été envoyée par le passé, alors cette fonction ne s'éxécute plus, le résultat qui a été mis 
+      // en cache par React est renvoyé à la place. 
 
-    setCatalog( CATALOG_MOCK.filter( p => p.platform === platform));
-  }
+      // useMemo est très utile pour économiser des ressources.
+      return (selectedPlatform == 'All') ? CATALOG_MOCK : CATALOG_MOCK.filter( p => p.platform === selectedPlatform);
+    }, 
+    [selectedPlatform]
+  );
 
 
 
@@ -41,8 +47,8 @@ export default function App() {
       <main className="app-shell" >
         <PageHeader title={title}/>
       </main>
-      <CatalogFilter platforms={platforms} setCurrentPlatform={setCurrentPlatform}  />
-      <Catalog catalog={catalog} />
+      <CatalogFilter platforms={platforms} setCurrentPlatform={setSelectedPlatform}  />
+      <Catalog catalog={filteredGames} />
       <footer className="course-note">Footer</footer>
     </>
   );
