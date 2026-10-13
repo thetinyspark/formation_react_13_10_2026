@@ -1,12 +1,5 @@
-# TP n°1 
+# TP n°2 
 
-- Créez votre premier composant nommé IDCard dans le fichier IDCard.jsx
-- Ce composant devra afficher les informations suivantes: 
+- Faites en sorte d'afficher l'intégralité des données des produits dans la boucle
 
-    - Votre nom
-    - Votre prénom
-    - Votre date de naissance
-    - Votre sexe
-    - Votre profession
-
-- Une fois ce composant crée, faites-en sorte de l'afficher au sain de main.jsx
+- Créez une fonctionnalité permettant d'extraire la liste unique des plateformes de tous les jeux et affichez là dans une balise select
