@@ -13,7 +13,7 @@ const CATALOG_MOCK = [
     "price": 29.99,
     "description": "A classic puzzle game.",
     "img": "./assets/img/tetris.jpg",
-    "platform": "Gameboy"
+    "platform": "PC"
   },
   {
     "id": 3,
