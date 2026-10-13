@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default function PageHeader({title, info}) {
+export default function PageHeader({title}) {
   // cette opération est normalement interdite en react, car les "fonctions composants"
   // sont supposées être des fonctions pures, çàd qu'elles ne modifient pas la valeur 
   // des propriétés qu'on leur envoie en paramètre. 
@@ -12,8 +12,6 @@ export default function PageHeader({title, info}) {
     <header className="topbar">
       <div>
         <p className="eyebrow">{title}</p>
-        <p className="eyebrow">{info.toto}</p>
-        <p className="eyebrow">{info?.titi}</p>
       </div>
     </header>
   );
@@ -28,10 +26,4 @@ export default function PageHeader({title, info}) {
 // se situe le problème.
 
 
-PageHeader.propTypes = {
-  title: PropTypes.string.isRequired, 
-  info: PropTypes.shape({
-    toto: PropTypes.string.isRequired,
-    titi: PropTypes.string
-  }).isRequired
-};
+PageHeader.propTypes = {title: PropTypes.string.isRequired};

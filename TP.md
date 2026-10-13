@@ -1,6 +1,5 @@
-# TP n°3 
+# TP n°4 
 
-- Créez un composant ProductCard.jsx et envoyez lui à travers les props les infos 
-du produit à afficher
-
-- Puis affichez autant de composant ProductCard qu'il y a de produits dans le catalog
+- Créez un composant Catalog.jsx auquel vous passerez le catalogue en paramètre
+- Créez un composant CatalogFilter.jsx dans lequel vous afficherez les plateformes 
+et auquel vous envoyez le catalogue en paramètre
