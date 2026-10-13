@@ -1,23 +1,38 @@
 import PropTypes from 'prop-types';
 import ProductType from '../types/Product.type';
+import { useState } from 'react';
 
-function getUniquePlatforms(catalog) {
-  const platforms = catalog.map(product => product.platform);
-  const uniq = new Set(platforms);
-  return Array.from(uniq);
-}
 
-export default function CatalogFilter({catalog, setCurrentPlatform}) {
+
+export default function CatalogFilter({platforms, setCurrentPlatform}) {
+
+
+  function onChangeHandler(event){
+    setPlatform(event.target.value);
+    setCurrentPlatform(event.target.value);
+  }
+
+  const [currentPlatform, setPlatform] = useState("");
+
   return (
-    <select>
+    <>
+    {/* <p>{currentPlatform}</p> */}
+    <select onChange={onChangeHandler}>
       {
-        getUniquePlatforms(catalog).map( 
+        platforms.map( 
           (platform, index)=>{
-            return <option value={platform} key={index}>{platform}</option>
+            if( platform === currentPlatform){
+              return <option selected value={platform} key={index}>{platform}</option>
+            }
+            else{
+
+              return <option value={platform} key={index}>{platform}</option>
+            }
           }
         )
       }      
     </select>
+    </>
   );
 }
 

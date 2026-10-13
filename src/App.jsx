@@ -5,6 +5,13 @@ import CATALOG_MOCK from './data/Catalog_mock';
 import { useState } from 'react';
 
 
+function getUniquePlatforms(catalog) {
+  const platforms = catalog.map(product => product.platform);
+  const uniq = Array.from(new Set(platforms));
+  uniq.unshift("All");
+  return uniq;
+}
+
 export default function App() {
 
   // quand on crée un état interne au composant avec useState
@@ -17,10 +24,16 @@ export default function App() {
   // et de tous ses composants enfants.
 
   const title = "My Video Game Store";
+  const [platforms, setPlatforms] = useState(getUniquePlatforms(CATALOG_MOCK));
   const [catalog, setCatalog] = useState(CATALOG_MOCK);
-  function setCurrentPlatform(currentPlatform){
+  function setCurrentPlatform(platform){
+    if( platform === "All")
+      return setCatalog(CATALOG_MOCK);
 
+    setCatalog( CATALOG_MOCK.filter( p => p.platform === platform));
   }
+
+
 
   return (
     // Le Fragment ajoute le footer sans créer d'élément DOM englobant superflu.
@@ -28,7 +41,7 @@ export default function App() {
       <main className="app-shell" >
         <PageHeader title={title}/>
       </main>
-      <CatalogFilter catalog={catalog} setCurrentPlatform={setCurrentPlatform}  />
+      <CatalogFilter platforms={platforms} setCurrentPlatform={setCurrentPlatform}  />
       <Catalog catalog={catalog} />
       <footer className="course-note">Footer</footer>
     </>
