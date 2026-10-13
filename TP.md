@@ -1,5 +1,4 @@
-# TP n°4 
+# TP n°5 
 
-- Créez un composant Catalog.jsx auquel vous passerez le catalogue en paramètre
-- Créez un composant CatalogFilter.jsx dans lequel vous afficherez les plateformes 
-et auquel vous envoyez le catalogue en paramètre
+- Modifiez les composants CatalogFilter et Catalog afin de récupérer la plateforme
+sélectionnée et ainsi filtrer les jeux en fonction de cette plateforme

@@ -4,11 +4,15 @@ import ProductCard from './ProductCard';
 
 export default function Catalog({catalog}) {
   return (
-    catalog.map(
-      (product) => (
-        <ProductCard product={product} key={product.id}/>
-      )
-    ) 
+    <div className='catalog'>
+      {
+        catalog.map(
+          (product) => (
+            <ProductCard product={product} key={product.id}/>
+          )
+        ) 
+      }
+    </div>
   );
 }
 

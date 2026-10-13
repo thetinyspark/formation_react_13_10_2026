@@ -5,3 +5,14 @@ body {
   background: #111827;
   color: #f9fafb;
 }
+
+.catalog{
+  display: block;
+}
+.product{
+  display: inline-block;
+}
+
+.product img{
+  width: 100px;
+}

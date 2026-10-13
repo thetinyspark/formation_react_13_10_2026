@@ -7,7 +7,7 @@ function getUniquePlatforms(catalog) {
   return Array.from(uniq);
 }
 
-export default function CatalogFilter({catalog}) {
+export default function CatalogFilter({catalog, setCurrentPlatform}) {
   return (
     <select>
       {
