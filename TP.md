@@ -1,5 +1,6 @@
-# TP n°2 
+# TP n°3 
 
-- Faites en sorte d'afficher l'intégralité des données des produits dans la boucle
+- Créez un composant ProductCard.jsx et envoyez lui à travers les props les infos 
+du produit à afficher
 
-- Créez une fonctionnalité permettant d'extraire la liste unique des plateformes de tous les jeux et affichez là dans une balise select
+- Puis affichez autant de composant ProductCard qu'il y a de produits dans le catalog

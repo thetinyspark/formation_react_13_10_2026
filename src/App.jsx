@@ -3,18 +3,18 @@ import CATALOG_MOCK from './data/Catalog_mock';
 
 function getUniquePlatforms(catalog) {
   const platforms = catalog.map(product => product.platform);
-  console.log(platforms);
   const uniq = new Set(platforms);
   return Array.from(uniq);
 }
 
 export default function App() {
-
+  const title = "My Video Game Store";
+  const info = { toto: "toto"};
   return (
     // Le Fragment ajoute le footer sans créer d'élément DOM englobant superflu.
     <>
       <main className="app-shell">
-        <PageHeader />
+        <PageHeader title={title} info={info}/>
       </main>
       <select>
       {
