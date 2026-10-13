@@ -1,4 +1,5 @@
 import PageHeader from './components/PageHeader';
+import ProductCard from './components/ProductCard';
 import CATALOG_MOCK from './data/Catalog_mock';
 
 function getUniquePlatforms(catalog) {
@@ -33,13 +34,7 @@ export default function App() {
       // de div avec des noms de produits qu'il y a de produits dans CATALOG_MOCK
         CATALOG_MOCK.map(
           (product) => (
-            <div className="product-card" key={product.id}>
-              <h2>{product.name}</h2>
-              <p>Prix: {product.price}</p>
-              <p>Description: {product.description}</p>
-              <p>Plateforme: {product.platform}</p>
-              <img src={product.img} />
-            </div>
+            <ProductCard product={product}/>
           )
         ) 
       }
