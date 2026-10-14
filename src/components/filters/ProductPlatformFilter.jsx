@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
-import ProductType from '../types/Product.type';
 
 
 
-export default function CatalogFilter({platforms, setCurrentPlatform}) {
+export default function ProductPlatformFilter({platforms, setCurrentPlatform}) {
 
 
   function onChangeHandler(event){
@@ -23,6 +22,6 @@ export default function CatalogFilter({platforms, setCurrentPlatform}) {
   );
 }
 
-CatalogFilter.propTypes = {
+ProductPlatformFilter.propTypes = {
   platforms: PropTypes.arrayOf(PropTypes.string).isRequired
 };
