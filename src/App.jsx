@@ -1,34 +1,41 @@
 import PageHeader from './components/PageHeader';
-import Catalog from './components/Catalog';
-import { useMemo, useState } from 'react';
-import ProductPlatformFilter from './components/filters/ProductPlatformFilter';
-import ProductNameFilter from './components/filters/ProductNameFilter';
-import ProductPriceFilter from './components/filters/ProductPriceFilter';
-import useGameStore from './hooks/useGameStore';
+import {Link, NavLink, Route, Routes} from 'react-router-dom';
+import CatalogPage from './components/screens/CatalogPage';
+import HomePage from './components/screens/HomePage';
+import ProductDetailedCardPage from './components/screens/ProductDetailedCardPage';
 
 
 
 export default function App() {
 
-  const {
-    filteredGames, 
-    setMinPriceFilter, 
-    setMaxPriceFilter, 
-    setSearchNameFilter, 
-    setSelectedPlatform,
-    platforms
-  } = useGameStore();
-
   const title = "My Video Game Store";
   
   return (
     <>
-      <main className="app-shell" ><PageHeader title={title}/></main>
-      <ProductPriceFilter onPriceChange={setMinPriceFilter} label="Min Price" />
-      <ProductPriceFilter onPriceChange={setMaxPriceFilter} label="Max Price" />
-      <ProductNameFilter onValueChange={setSearchNameFilter} />
-      <ProductPlatformFilter platforms={platforms} setCurrentPlatform={setSelectedPlatform}  />
-      <Catalog catalog={filteredGames} />
+      <main className="app-shell" >
+        <PageHeader title={title}/>
+        <nav>
+          <ul>
+            <li>
+              <NavLink to="/">Accueil</NavLink>
+            </li>
+            <li>
+              {/* <NavLink to="/catalog">Catalog</NavLink> */}
+              <Link to="/catalog">Catalog 2</Link>
+            </li>
+            <li>
+              {/* <NavLink to="/catalog">Catalog</NavLink> */}
+              <Link to="/product/1">Produit id 1</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={ <HomePage /> }/>
+          <Route path="/catalog" element={ <CatalogPage /> }/>
+          <Route path="/product/:id" element={ <ProductDetailedCardPage /> }/>
+        </Routes>
+      </main>
       <footer className="course-note">Footer</footer>
     </>
   );
