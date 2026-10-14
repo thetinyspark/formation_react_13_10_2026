@@ -1,11 +1,22 @@
-# TP n°9 
+# TP n°10 
 
-- Créez un composant Navigation.jsx dans lequel vous déplacerez tous les liens de la navigation. 
+- Au sein du GameProvider, ajoutez l'état suivant [cart,setCart]
+- Vous pouvez ajouter les fonctionnalités suivantes: 
+    - addToCart (qui utilisera donc setCart)
+    - removeFromCart (qui utilisera donc setCart)
+    - getTotalPriceHT
+    - getTotalPriceTTC
 
-- Faire en sorte que sur les composants ProductPage.jsx, il y ait un lien "voir le détail", qui vous emmène vers la vue détaillé du produit (donc vers la route /product/:id_de_mon_produit)
+- Dans le ProductDetailedCardPage.jsx, ajoutez un bouton "Ajouter au panier", 
+qui déclenchera la fonction addToCart. 
 
-- Modifiez ProductDetailedCardPage de la façon suivante: 
+- Enfin, faites en sorte de protéger la CartPage.jsx en vérifiant 
+le nombre de produits au sein du cart puis affichez les produits, le total HT, le total TTC (TVA 20%). 
 
-    - Récupérez le store
-    - Depuis le catalog du store, retrouvez le produit avec l'id passé en paramètre puis affichez-le
+
+BONUS: Au sein du Cart, ajoutez un bouton permettant de supprimer chacun des produits du panier
+
+
+SUPER BONUS QUI SERT A RIEN SAUF LA GLOIRE: 
+    - Gérez les doublons de produits avec les quantités
 

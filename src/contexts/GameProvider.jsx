@@ -33,7 +33,11 @@ export default function GameProvider({children}){
                 setMinPriceFilter, 
                 setMaxPriceFilter, 
                 setSearchNameFilter, 
-                setSelectedPlatform
+                setSelectedPlatform, 
+                getProductById: (id)=>{
+                    console.log("get product by id ", catalog);
+                    return catalog.find( p=>p.id == id) || null;
+                }
             }
         }, 
         [selectedPlatform, searchNameFilter,minPriceFilter,maxPriceFilter,catalog, platforms]
@@ -43,7 +47,7 @@ export default function GameProvider({children}){
         ()=>{
             async function getCatalog(){
                 try{
-                    const response = await window.fetch("./assets/catalog.json"); 
+                    const response = await window.fetch("/assets/catalog.json"); 
                     const catalogData = await response.json();
                     setCatalog(catalogData);
                     setPlatforms(getUniquePlatforms(catalogData));

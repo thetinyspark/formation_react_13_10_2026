@@ -4,8 +4,6 @@ import ProductNameFilter from '../filters/ProductNameFilter';
 import ProductPriceFilter from '../filters/ProductPriceFilter';
 import useGameStore from '../../hooks/useGameStore';
 
-
-
 export default function CatalogPage() {
 
   const {
@@ -16,7 +14,6 @@ export default function CatalogPage() {
     setSelectedPlatform,
     platforms
   } = useGameStore();
-
 
   return (
     <>
