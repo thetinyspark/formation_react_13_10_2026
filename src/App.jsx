@@ -1,6 +1,5 @@
 import PageHeader from './components/PageHeader';
 import Catalog from './components/Catalog';
-import CATALOG_MOCK from './data/Catalog_mock';
 import { useEffect, useMemo, useState } from 'react';
 import ProductPlatformFilter from './components/filters/ProductPlatformFilter';
 import ProductNameFilter from './components/filters/ProductNameFilter';
@@ -16,20 +15,21 @@ function getUniquePlatforms(catalog) {
 
 export default function App() {
   const title = "My Video Game Store";
+  const [catalog, setCatalog] = useState([]);
   const [selectedPlatform, setSelectedPlatform] = useState("All");
   const [searchNameFilter, setSearchNameFilter] = useState("");
   const [minPriceFilter, setMinPriceFilter] = useState(0);
   const [maxPriceFilter, setMaxPriceFilter] = useState(100);
-  const [platforms, setPlatforms] = useState(getUniquePlatforms(CATALOG_MOCK));
+  const [platforms, setPlatforms] = useState(getUniquePlatforms(catalog));
   const filteredGames = useMemo(
     ()=>{
       let results = [];
-      results = (selectedPlatform == 'All') ? CATALOG_MOCK : CATALOG_MOCK.filter( p => p.platform === selectedPlatform);
+      results = (selectedPlatform == 'All') ? catalog : catalog.filter( p => p.platform === selectedPlatform);
       results = results.filter( p=> p.name.toLowerCase().includes(searchNameFilter.toLowerCase()));
       results = results.filter( p=> p.price <= maxPriceFilter && p.price >= minPriceFilter);
       return results;
     }, 
-    [selectedPlatform, searchNameFilter,minPriceFilter,maxPriceFilter]
+    [selectedPlatform, searchNameFilter,minPriceFilter,maxPriceFilter,catalog]
   );
 
   useEffect( 
@@ -49,9 +49,10 @@ export default function App() {
 
           // même chose ici
           const catalogData = await response.json();
-          console.log(catalogData);
+          setCatalog(catalogData);
+          setPlatforms(getUniquePlatforms(catalog));
 
-          // maintenant ce qu'il faut c'est utiliser catalogData au lieu de CATALOG_MOCK
+          // maintenant ce qu'il faut c'est utiliser catalogData au lieu de catalog
           // donc les données contenues dans catalogData vont servir à changer un état 
           // à partir duquel on filtre toutes les données
         }
@@ -62,6 +63,7 @@ export default function App() {
 
       // on déclenche la fonction getCatalog() ici
       getCatalog();
+
     }, 
     [] // <- signifie que useEffect est déclenché une fois au montage çàd au démarrage du composant
   )
