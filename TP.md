@@ -1,10 +1,14 @@
-# TP n°7 
+# TP n°8 
 
-Au sein du composant App.jsx, faites en sorte de : 
+Au sein du GameProvider, transférez depuis App.jsx, la gestion des états suivants: 
+(faites-le un par un)
 
-- Créer un nouvel état "catalog" avec useState , par défaut, il vaut un tableau vide
+- selectedPlatform, setSelectedPlatform
+- searchNameFilter, setSearchNameFilter
+- minPriceFilter, setMinPriceFilter
+- maxPriceFilter, setMaxPriceFilter
+- platforms, setPlatforms
+- filteredGames
 
-- Remplacer toutes les références à CATALOG_MOCK par le nouvel état
-- Puis, une fois le catalog.json téléchargé au sein du useEffect, attribuez la valeur du catalog téléchargé à ce nouvel état
-
+Afin de pouvoir MAJ les états en question n'hésitez à ajouter les setters dans les données partagées par le provider
 

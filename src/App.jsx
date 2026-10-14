@@ -1,10 +1,10 @@
 import PageHeader from './components/PageHeader';
 import Catalog from './components/Catalog';
-import { useContext, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import ProductPlatformFilter from './components/filters/ProductPlatformFilter';
 import ProductNameFilter from './components/filters/ProductNameFilter';
 import ProductPriceFilter from './components/filters/ProductPriceFilter';
-import GameContext from './contexts/GameContext';
+import useGameStore from './hooks/useGameStore';
 
 
 function getUniquePlatforms(catalog) {
@@ -16,12 +16,7 @@ function getUniquePlatforms(catalog) {
 
 export default function App() {
 
-  const context = useContext(GameContext);
-  if( !context){
-    return <p>Contexte vide</p>
-  }
-
-  const {catalog} = context;
+  const {catalog} = useGameStore();
 
   const title = "My Video Game Store";
   // const [catalog, setCatalog] = useState([]);
