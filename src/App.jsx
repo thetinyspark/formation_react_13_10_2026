@@ -1,7 +1,7 @@
 import PageHeader from './components/PageHeader';
 import Catalog from './components/Catalog';
 import CATALOG_MOCK from './data/Catalog_mock';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ProductPlatformFilter from './components/filters/ProductPlatformFilter';
 import ProductNameFilter from './components/filters/ProductNameFilter';
 import ProductPriceFilter from './components/filters/ProductPriceFilter';
@@ -31,6 +31,40 @@ export default function App() {
     }, 
     [selectedPlatform, searchNameFilter,minPriceFilter,maxPriceFilter]
   );
+
+  useEffect( 
+    // on ne peut pas rendre cette fonction asynchrone car la fonction
+    // envoyée à useEffect ne doit renvoyer aucune valeur, pas même une promise
+    // de void
+    ()=>{
+
+      // une fonction asynchrone renvoie systématiquement une promise
+      // mais elle comporte un avantage syntaxique, elle nous permet 
+      // d'utiliser le mot clé await et donc d'éviter le code en c
+      async function getCatalog(){
+        try{
+          // le temps que cette promesse soit résolue, l'éxécution de la 
+          // fonction est stoppée
+          const response = await window.fetch("./assets/catalog.json"); 
+
+          // même chose ici
+          const catalogData = await response.json();
+          console.log(catalogData);
+
+          // maintenant ce qu'il faut c'est utiliser catalogData au lieu de CATALOG_MOCK
+          // donc les données contenues dans catalogData vont servir à changer un état 
+          // à partir duquel on filtre toutes les données
+        }
+        catch(error){
+          console.log(error);
+        }
+      }
+
+      // on déclenche la fonction getCatalog() ici
+      getCatalog();
+    }, 
+    [] // <- signifie que useEffect est déclenché une fois au montage çàd au démarrage du composant
+  )
 
 
 
