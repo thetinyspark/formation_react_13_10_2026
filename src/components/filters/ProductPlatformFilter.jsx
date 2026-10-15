@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 
 
-export default function ProductPlatformFilter({platforms, setCurrentPlatform}) {
+export default function ProductPlatformFilter({platforms, testid, setCurrentPlatform}) {
 
 
   function onChangeHandler(event){
@@ -14,7 +14,7 @@ export default function ProductPlatformFilter({platforms, setCurrentPlatform}) {
       {
         platforms.map( 
           (platform, index)=>{
-            return <option value={platform} key={index}>{platform}</option>
+            return <option value={platform} data-testid={testid} key={index}>{platform}</option>
           }
         )
       }      

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-export default function ProductPriceFilter({ label, onPriceChange }) {
+export default function ProductPriceFilter({ label, testid, onPriceChange }) {
   return (
     <>
       <label>{label}</label>
-      <input type="number"  onChange={(e) => onPriceChange(e.target.value)} />
+      <input type="number" data-testid={testid} onChange={(e) => onPriceChange(e.target.value)} />
       <br />
     </>
   );

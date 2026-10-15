@@ -81,6 +81,36 @@ describe('CatalogPage', () => {
     );
   });
 
+  it('should filter games by price min & max', async () => {
+    const user = userEvent.setup();
+    const priceMin = Math.round(Math.random() * 100);
+    const priceMax = priceMin + Math.round(Math.random() * 100);
+    render(
+      <MemoryRouter>
+        <GameProvider>
+          <CatalogPage/>
+        </GameProvider>
+      </MemoryRouter>
+    );
 
+    await waitFor(10);
+    const priceMinFilter = await screen.getByTestId("pricemin-filter");
+    const priceMaxFilter = await screen.getByTestId("pricemax-filter");
+    await user.clear(priceMinFilter);
+    await user.type(priceMinFilter, priceMin.toString());
+    await user.type(priceMaxFilter, priceMax.toString());
+    await waitFor(10);
+
+    CATALOG_MOCK.forEach( 
+      async (product)=>{
+        if( product.price >= priceMin && product.price <= priceMax){
+          expect(screen.getByText(product.name)).toBeInTheDocument();
+        }
+        else{
+          expect(screen.queryByText(product.name)).not.toBeInTheDocument()
+        }
+      }
+    );
+  });
 
 });

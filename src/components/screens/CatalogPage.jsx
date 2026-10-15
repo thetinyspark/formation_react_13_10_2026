@@ -17,10 +17,10 @@ export default function CatalogPage() {
 
   return (
     <>
-      <ProductPriceFilter onPriceChange={setMinPriceFilter} label="Min Price" />
-      <ProductPriceFilter onPriceChange={setMaxPriceFilter} label="Max Price" />
-      <ProductNameFilter onValueChange={setSearchNameFilter} />
-      <ProductPlatformFilter platforms={platforms} setCurrentPlatform={setSelectedPlatform}  />
+      <ProductPriceFilter     testid="pricemin-filter"          onPriceChange={setMinPriceFilter} label="Min Price" />
+      <ProductPriceFilter     testid="pricemax-filter"          onPriceChange={setMaxPriceFilter} label="Max Price" />
+      <ProductNameFilter      testid="name-filter"         onValueChange={setSearchNameFilter} />
+      <ProductPlatformFilter  testid="platform-filter"     platforms={platforms} setCurrentPlatform={setSelectedPlatform}  />
       <Catalog catalog={filteredGames} />
     </>
   );
