@@ -22,9 +22,25 @@ export default function useReduxStore(){
                     console.log(error);
                 }
             }
+
+            let myInterval = setInterval(getCatalog, 10000);
             getCatalog();
+
+
+            return ()=>{
+                // fonction qui sera exécutée lors du démontage du composant
+                clearInterval(myInterval);
+                // elle peut servir à se désabonner d'un événement ou à 
+                // nettoyer des ressources comme par exemple des setInterval
+            }
         }, 
-        []
+        [] // le tableau vide signifie que l'effet ne sera exécuté 
+        // qu'une seule fois, au montage du composant, et qu'il ne sera pas réexécuté 
+        // lors des mises à jour du composant
+        // si le composant avait été sous forme de classe, cela aurait 
+        // été équivalent à componentDidMount mais si on avait essayé d'utiliser 
+        // useEffect dans componentDidMount, cela aurait été une erreur car useEffect 
+        // ne peut être utilisé que dans des composants fonctionnels
     ); 
 
     const filteredGames = useMemo( 
