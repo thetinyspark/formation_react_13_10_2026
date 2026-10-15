@@ -4,12 +4,16 @@ import App from './App';
 import './index.css';
 import GameProvider from './contexts/GameProvider';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <GameProvider>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </GameProvider>
     </BrowserRouter>
   </React.StrictMode>

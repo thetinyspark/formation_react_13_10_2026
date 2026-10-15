@@ -1,22 +1,14 @@
-# TP n°10 
+# TP n°11
 
-- Au sein du GameProvider, ajoutez l'état suivant [cart,setCart]
-- Vous pouvez ajouter les fonctionnalités suivantes: 
-    - addToCart (qui utilisera donc setCart)
-    - removeFromCart (qui utilisera donc setCart)
-    - getTotalPriceHT
-    - getTotalPriceTTC
+- Modifiez le useReduxStore de la sorte: 
 
-- Dans le ProductDetailedCardPage.jsx, ajoutez un bouton "Ajouter au panier", 
-qui déclenchera la fonction addToCart. 
+- Premièrement, au lieu de stocker des "jeux" de type chaine de caractères, stockez de vrais produits. 
 
-- Enfin, faites en sorte de protéger la CartPage.jsx en vérifiant 
-le nombre de produits au sein du cart puis affichez les produits, le total HT, le total TTC (TVA 20%). 
+- Puis, déclarez au sein du store, une valeur correspondant au prix minimum
+d'un jeu, puis créez l'action qui permet de la changer au sein du gamesReducer
+
+- Puis, une fois le prix minimum changé, combinez cela avec un useMemo afin de calculer les jeux filtrés en fonction du prix minimum et affichez les. 
 
 
-BONUS: Au sein du Cart, ajoutez un bouton permettant de supprimer chacun des produits du panier
-
-
-SUPER BONUS QUI SERT A RIEN SAUF LA GLOIRE: 
-    - Gérez les doublons de produits avec les quantités
+NOTA BENE: Restez sur la homepage pendant tout ce temps, c'est un peu notre composant Test / Poubelle. Le but est de manipuler redux, pas forcément de convertir toute notre application.
 
