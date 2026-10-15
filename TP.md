@@ -1,5 +1,6 @@
-# TP n°12
+# TP n°13
 
-- Testez le composant PageHeader.jsx en vérifiant que le titre passé
-en paramètre est bien rendu.
+- Testez le filtre des jeux par prix minimum
+- Testez le filtre des jeux par prix maximum
+- Testez le filtre des jeux par nom
 
