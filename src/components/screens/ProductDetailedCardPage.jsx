@@ -4,7 +4,7 @@ import useGameStore from "../../hooks/useGameStore";
 export default function ProductDetailedCardPage() {
 
   const { id } = useParams();
-  const {getProductById} = useGameStore();
+  const {getProductById, addToCart} = useGameStore();
   const product = getProductById(id);
 
   console.log("Product: " + product);
@@ -17,6 +17,7 @@ export default function ProductDetailedCardPage() {
         <p>Description: {product.description}</p>
         <p>Plateforme: {product.platform}</p>
         <img src={product.img} />
+        <button onClick={() => addToCart(product)}>Ajouter au panier</button>
     </div>
   );
 }

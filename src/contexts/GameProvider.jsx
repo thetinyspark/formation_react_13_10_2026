@@ -10,6 +10,7 @@ function getUniquePlatforms(catalog) {
 
 
 export default function GameProvider({children}){
+    const [cart, setCart] = useState([]);
     const [catalog, setCatalog] = useState([]);
     const [selectedPlatform, setSelectedPlatform] = useState("All");
     const [searchNameFilter, setSearchNameFilter] = useState("");
@@ -30,17 +31,43 @@ export default function GameProvider({children}){
                 minPriceFilter, 
                 maxPriceFilter, 
                 platforms, 
+                cart,
                 setMinPriceFilter, 
                 setMaxPriceFilter, 
                 setSearchNameFilter, 
                 setSelectedPlatform, 
                 getProductById: (id)=>{
-                    console.log("get product by id ", catalog);
                     return catalog.find( p=>p.id == id) || null;
+                }, 
+
+                addToCart: (product) => {
+                    setCart([...cart, product]);
+                },
+                removeFromCart: (product) => {
+                    const tmp = [...cart];
+                    const pos = tmp.indexOf(product);
+                    tmp.splice(pos, 1)
+                    setCart(tmp);
+                },
+                getTotalPriceHT: () => {
+                    return cart.reduce(
+                        (total, product) => {
+                            return total + product.price;
+                        },
+                        0
+                    );
+                },
+                getTotalPriceTTC: () => {
+                    return cart.reduce(
+                        (total, product) => {
+                            return total + product.price;
+                        },
+                        0
+                    ) * 1.2;
                 }
             }
         }, 
-        [selectedPlatform, searchNameFilter,minPriceFilter,maxPriceFilter,catalog, platforms]
+        [selectedPlatform, searchNameFilter,minPriceFilter,maxPriceFilter,catalog, platforms, cart]
     );
 
     useEffect( 
