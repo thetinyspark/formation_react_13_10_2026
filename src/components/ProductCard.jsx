@@ -4,7 +4,7 @@ import ProductType from '../types/Product.type';
 export default function ProductCard({product}) {
   return (
     <div className='product'>
-        <h2>{product.name.substring(0,10)}</h2>
+        <h2>{product.name}</h2>
         <p>Prix: {product.price}</p>
         <p>Plateforme: {product.platform}</p>
         <img src={product.img} />
