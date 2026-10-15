@@ -7,8 +7,6 @@ export default function ProductDetailedCardPage() {
   const {getProductById, addToCart} = useGameStore();
   const product = getProductById(id);
 
-  console.log("Product: " + product);
-
   return (
     product &&
     <div className='product'>

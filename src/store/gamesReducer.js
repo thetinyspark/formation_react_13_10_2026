@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit"
 
 // on a un état initial qui est un objet avec une propriété games qui vaut un tableau vide
 const initialState = {
-    games: []
+    games: [], 
+    priceMin: 0
 }
 
 // on crée un objet de type slice qui associe un état initial à un reducer. 
@@ -21,13 +22,19 @@ const slice = createSlice(
                 // de l'action.
                 // state.games = [...state.games, action.payload];
                 state.games.push(action.payload);
+            },
+            setGames(state, action){
+                state.games = action.payload;
+            },
+            setPriceMin(state, action){
+                state.priceMin = action.payload;
             }
         }
     }
 ); 
 
 // on peut exporter les actions individuellement afin de les utiliser plus facilement
-export const {addGames} = slice.actions;
+export const {addGames, setGames, setPriceMin} = slice.actions;
 
 // on peut exporter le reducer afin de le déclarer dans le store
 export default slice.reducer;
